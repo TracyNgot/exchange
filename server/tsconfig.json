@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "strict": true,
+    "baseUrl": "./",
+    "outDir": "../lib",
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "jsx": "preserve",
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "include": ["./"]
+}
