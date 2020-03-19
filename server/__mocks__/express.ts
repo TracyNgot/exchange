@@ -1,6 +1,6 @@
 import { mockFn } from '../test';
 
-const module = () => ({
+const express = () => ({
   use: (...args: any[]) => mockFn('use', args),
   listen: (...args: any[]) => mockFn('listen', args),
   get: (...args: any[]) => mockFn('get', args),
@@ -8,4 +8,4 @@ const module = () => ({
   delete: (...args: any[]) => mockFn('delete', args),
 });
 
-export default module;
+export default express;

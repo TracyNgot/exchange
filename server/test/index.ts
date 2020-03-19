@@ -1,3 +1,3 @@
-import { mockFn } from './helpers';
+import { mockFn, MockResponse } from './helpers';
 
-export { mockFn };
+export { mockFn, MockResponse };

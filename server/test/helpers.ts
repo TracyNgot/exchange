@@ -5,3 +5,14 @@ export function mockFn(type: string, expectedArgs?: any[]) {
     ? innerFn(...expectedArgs)
     : innerFn;
 }
+
+export class MockResponse {
+  status(...args: any[]) {
+    mockFn('status', args);
+    return this;
+  }
+  json(...args: any[]) {
+    mockFn('json', args);
+    return this;
+  }
+}

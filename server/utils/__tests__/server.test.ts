@@ -1,4 +1,4 @@
-import { server } from '../index';
+import server from '../server';
 
 describe('Server', () => {
   it('inits the app', () => {

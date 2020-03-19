@@ -19,7 +19,7 @@ const routes: Route[] = [
   { type: 'post', path: '/converter/currency', handler: Converter.addCurrency },
   {
     type: 'delete',
-    path: '/converter/currency',
+    path: '/converter/currency/:id',
     handler: Converter.deleteCurrency,
   },
 ];
