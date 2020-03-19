@@ -6,19 +6,27 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
+    "@types/jest": "^25.1.4",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.0",
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "faunadb": "^2.13.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "typescript": "~3.8.3"
+    "typescript": "^3.8.3"
   },
   "scripts": {
+    "start.server": "nodemon --config nodemon.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test.ci": "CI=true TZ=UTC yarn test --coverage --ci --maxWorkers=2 -u",
+    "test.server": "jest --rootDir server/ --config server/jest.config.js",
+    "test.server.ci": "CI=true TZ=UTC yarn test.server --coverage --ci --maxWorkers=2 -u",
     "eject": "react-scripts eject",
     "lint": "yarn lint.ci --fix",
     "lint.ci": "eslint src --ext .ts,.tsx"
@@ -36,12 +44,19 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.3",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^3.1.2",
-    "prettier": "^1.19.1"
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.7.0",
+    "tslint": "^6.1.0"
   }
 }
