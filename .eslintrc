@@ -1,0 +1,78 @@
+{
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      { "singleQuote": true, "trailingComma": "all" }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-object-literal-type-assertion": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "block-spacing": 0,
+    "class-methods-use-this": 0,
+    "eqeqeq": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "import/no-duplicate": 0,
+    "import/no-dynamic-require": 0,
+    "import/no-mutable-exports": 0,
+    "import/prefer-default-export": 0,
+    "init-declarations": 0,
+    "global-require": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0,
+    "lines-between-class-members": 0,
+    "new-cap": 0,
+    "nonblock-statement-body-position": 0,
+    "no-empty-function": 0,
+    "no-floating-decimal": 0,
+    "no-irregular-whitespace": 0,
+    "no-mixed-operators": 0,
+    "no-multi-assign": 0,
+    "no-nested-ternary": 0,
+    "no-plusplus": 0,
+    "no-template-curly-in-string": 0,
+    "no-undef": 0,
+    "no-undef-init": 0,
+    "no-unused-vars": 0,
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "no-useless-constructor": 0,
+    "no-use-before-define": 0,
+    "one-var": 0,
+    "react/no-did-update-set-state": 0,
+    "react/prop-types": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-no-bind": 0,
+    "react/no-array-index-key": 0,
+    "react/prefer-stateless-function": 0
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser"
+}
