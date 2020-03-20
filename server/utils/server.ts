@@ -1,5 +1,7 @@
 import express, { Express } from 'express';
+import bodyParser from 'body-parser';
 import cors from 'cors';
+
 import routes from './routes';
 
 class Server {
@@ -9,6 +11,7 @@ class Server {
 
   constructor() {
     this.app = express();
+    this.app.use(bodyParser.json());
     this.app.use(
       cors({
         origin: Server.ORIGIN,

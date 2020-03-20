@@ -11,6 +11,7 @@
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.0",
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faunadb": "^2.13.0",
@@ -22,6 +23,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
+    "deploy": "netlify deploy",
     "start.server": "nodemon --config nodemon.json",
     "start": "react-scripts start",
     "build": "npm-run-all build.**",
@@ -34,7 +36,8 @@
     "eject": "react-scripts eject",
     "lint": "yarn lint.ci --fix",
     "lint.ci": "eslint src --ext .ts,.tsx",
-    "prebuild": "rimraf lib/ build/"
+    "prebuild": "rimraf lib/ build/",
+    "predeploy": "yarn build"
   },
   "browserslist": {
     "production": [
@@ -48,9 +51,18 @@
       "last 1 safari version"
     ]
   },
+  "proxy": {
+    "/.netlify/functions": {
+      "target": "http://localhost:4000",
+      "pathRewrite": {
+        "^/\\.netlify/functions": ""
+      }
+    }
+  },
   "devDependencies": {
     "@babel/preset-typescript": "^7.8.3",
     "@types/axios": "^0.14.0",
+    "@types/body-parser": "^1.19.0",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.3",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
