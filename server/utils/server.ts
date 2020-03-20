@@ -40,7 +40,9 @@ class Server {
   }
 
   private setupRoutes() {
-    routes.forEach(({ handler, type, path }) => this.app[type](path, handler));
+    routes.forEach(({ handler, type, path }) =>
+      this.app[type](`/.netlify/functions/${path}`, handler),
+    );
   }
 }
 

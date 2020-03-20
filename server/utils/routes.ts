@@ -8,18 +8,18 @@ export interface Route {
 }
 
 const routes: Route[] = [
-  { type: 'get', path: '/pockets', handler: Pocket.getPockets },
-  { type: 'get', path: '/pockets/:id', handler: Pocket.getPocket },
-  { type: 'get', path: '/exchanges', handler: Exchange.getExchanges },
-  { type: 'post', path: '/exchanges', handler: Exchange.createExchange },
-  { type: 'get', path: '/rates', handler: Rate.getRates },
-  { type: 'post', path: '/rates', handler: Rate.createRate },
-  { type: 'delete', path: '/rates', handler: Rate.deleteRate },
-  { type: 'get', path: '/converter', handler: Converter.getConverter },
-  { type: 'post', path: '/converter/currency', handler: Converter.addCurrency },
+  { type: 'get', path: 'pockets', handler: Pocket.getPockets },
+  { type: 'get', path: 'pockets/:id', handler: Pocket.getPocket },
+  { type: 'get', path: 'exchanges', handler: Exchange.getExchanges },
+  { type: 'post', path: 'exchanges', handler: Exchange.createExchange },
+  { type: 'get', path: 'rates', handler: Rate.getRates },
+  { type: 'post', path: 'rates', handler: Rate.createRate },
+  { type: 'delete', path: 'rates', handler: Rate.deleteRate },
+  { type: 'get', path: 'converter', handler: Converter.getConverter },
+  { type: 'post', path: 'converter/currency', handler: Converter.addCurrency },
   {
     type: 'delete',
-    path: '/converter/currency/:id',
+    path: 'converter/currency/:id',
     handler: Converter.deleteCurrency,
   },
 ];
