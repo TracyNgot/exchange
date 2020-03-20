@@ -9,9 +9,9 @@ export default class Pocket extends Controller {
       const result = await database
         .getClient()
         .query(Pocket.queryBuilder.getCollection('pockets'));
-      return response.status(200).json(result);
+      response.status(200).json(result);
     } catch (error) {
-      return response.status(400).json(error);
+      response.status(400).json(error);
     }
   }
 
@@ -24,9 +24,9 @@ export default class Pocket extends Controller {
       const result = await database
         .getClient()
         .query(Pocket.queryBuilder.get(id));
-      return response.status(200).json(result);
+      response.status(200).json(result);
     } catch (error) {
-      return response.status(400).json(error);
+      response.status(400).json(error);
     }
   }
 }

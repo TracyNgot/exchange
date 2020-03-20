@@ -13,9 +13,9 @@ export default class Converter extends Controller {
         .getClient()
         .query(Converter.queryBuilder.getCollection('converter'));
 
-      return response.status(200).json(result);
+      response.status(200).json(result);
     } catch (error) {
-      return response.status(400).json(error);
+      response.status(400).json(error);
     }
   }
 
@@ -29,9 +29,9 @@ export default class Converter extends Controller {
         .getClient()
         .query(Converter.queryBuilder.create('converter', { currency }));
 
-      return response.status(200).json(result);
+      response.status(200).json(result);
     } catch (error) {
-      return response.status(400).json(error);
+      response.status(400).json(error);
     }
   }
 
@@ -48,9 +48,9 @@ export default class Converter extends Controller {
         .getClient()
         .query(Converter.queryBuilder.delete(id));
 
-      return response.status(200).json(result);
+      response.status(200).json(result);
     } catch (error) {
-      return response.status(400).json(error);
+      response.status(400).json(error);
     }
   }
 }
