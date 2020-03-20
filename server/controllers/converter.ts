@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { Controller } from './abstract';
+
 import database from '../utils/database';
+import { Controller } from './abstract';
 
 export default class Converter extends Controller {
   static async getConverter(
