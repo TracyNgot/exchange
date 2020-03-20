@@ -14,15 +14,19 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faunadb": "^2.13.0",
+    "netlify-lambda": "^1.6.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
+    "serverless-http": "^2.3.2",
     "typescript": "^3.8.3"
   },
   "scripts": {
     "start.server": "nodemon --config nodemon.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "prebuild.server": "yarn tsc --build server/tsconfig.json",
+    "build.server": "netlify-lambda build lib/",
     "test": "react-scripts test",
     "test.ci": "CI=true TZ=UTC yarn test --coverage --ci --maxWorkers=2 -u",
     "test.server": "jest --rootDir server/ --config server/jest.config.js",
@@ -42,6 +46,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "proxy": {
+    "/.netlify/functions": {
+      "target": "http://localhost:4000",
+      "pathRewrite": {
+        "^/\\.netlify/functions": ""
+      }
+    }
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
