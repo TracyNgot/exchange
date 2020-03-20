@@ -7,14 +7,12 @@ import routes from './routes';
 class Server {
   private app: Express;
 
-  static ORIGIN = ['http://localhost:3000'];
-
   constructor() {
     this.app = express();
     this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(
       cors({
-        origin: Server.ORIGIN,
         methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
         allowedHeaders: [
           'Authorization',
