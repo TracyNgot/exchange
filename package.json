@@ -29,11 +29,12 @@
     "build.server": "netlify-lambda build server/",
     "test": "react-scripts test",
     "test.ci": "CI=true TZ=UTC yarn test --coverage --ci --maxWorkers=2 -u",
-    "test.server": "jest --rootDir server/ --config server/jest.config.js",
+    "test.server": "jest --rootDir server/ --config server/jest.config.test.js",
     "test.server.ci": "CI=true TZ=UTC yarn test.server --coverage --ci --maxWorkers=2 -u",
     "eject": "react-scripts eject",
     "lint": "yarn lint.ci --fix",
-    "lint.ci": "eslint src --ext .ts,.tsx"
+    "lint.ci": "eslint src --ext .ts,.tsx",
+    "prebuild": "rimraf lib/ build/"
   },
   "browserslist": {
     "production": [
@@ -46,14 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": {
-    "/.netlify/functions": {
-      "target": "http://localhost:4000",
-      "pathRewrite": {
-        "^/\\.netlify/functions": ""
-      }
-    }
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.8.3",
@@ -71,6 +64,7 @@
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.7.0",
     "tslint": "^6.1.0"
