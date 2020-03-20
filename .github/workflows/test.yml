@@ -23,7 +23,9 @@ jobs:
             node_modules-
 
       - name: Lint
-        run: yarn lint
+        run: |
+          yarn --frozen-lockfile
+          yarn lint
 
       - name: Install, Test and Build [APP]
         run: |
