@@ -27,16 +27,21 @@ jobs:
           yarn --frozen-lockfile
           yarn lint
 
-      - name: Install, Test and Build [APP]
+      - name: Build
+        run: |
+          yarn --frozen-lockfile
+          yarn build
+
+      - name: Test [APP]
         run: |
           yarn --frozen-lockfile
           yarn test.ci
-          yarn build
+        env:
+          CI: true
 
-      - name: Install, Test and Build [SERVER]
+      - name: Test [SERVER]
         run: |
           yarn --frozen-lockfile
           yarn test.server.ci
-          yarn build.server
         env:
           CI: true
