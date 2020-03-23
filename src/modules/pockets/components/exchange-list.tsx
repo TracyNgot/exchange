@@ -35,7 +35,6 @@ const ExchangeList: React.FC<ExchangeListProps> = ({ pocket }) => {
 
   useEffect(() => {
     if (pocket?.id && !creating) dispatch(getExchangesByPocket(pocket.id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pocket, creating]);
 
   if (!loading && exchanges.length === 0)

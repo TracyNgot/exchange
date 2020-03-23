@@ -27,12 +27,10 @@ const Pockets: React.FC = () => {
 
   useEffect(() => {
     if (!creating) dispatch(getPockets());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [creating]);
 
   useEffect(() => {
     if (pockets.length > 0) setCurrentPocket(pockets[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pockets]);
 
   const title = (

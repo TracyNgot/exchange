@@ -71,7 +71,6 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({ onClose, pocket }) => {
     return () => {
       dispatch(clear());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -79,7 +78,6 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({ onClose, pocket }) => {
     else if (latestRates && pocketToExchange)
       setRate(latestRates[pocketToExchange.currency]);
     else if (!latestRates) refreshRates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [latestRates, error, pocketToExchange]);
 
   const footer = (
