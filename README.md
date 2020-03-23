@@ -43,6 +43,5 @@ yarn start
 ```
 
 ## TODO
-- Missing design. Working on it
 - The tests are only testing the server and the app. The store is currently not tested.
 - Adding singleton for pure components for avoiding useless rendering
