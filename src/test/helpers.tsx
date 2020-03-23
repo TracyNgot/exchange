@@ -65,6 +65,8 @@ export const MockCarousel: React.FC = ({ children, afterChange }: any) => (
   </div>
 );
 
+export const MockSpin = ({ children }) => <div>{children}</div>;
+
 export const MockModal: React.FC = ({
   children,
   visible,

@@ -34,8 +34,8 @@ const ExchangePocketCard: React.FC<ExchangePocketCardProps> = ({
   }));
 
   function updateAmount(value) {
-    if (isFrom) dispatch(updatePocketFromAmount(rate, value));
-    else dispatch(updatePocketToAmount(rate, value));
+    if (isFrom) dispatch(updatePocketFromAmount(rate, parseFloat(value)));
+    else dispatch(updatePocketToAmount(rate, parseFloat(value)));
   }
 
   function updatePocket(pocketId) {

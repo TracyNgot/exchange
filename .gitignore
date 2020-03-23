@@ -12,6 +12,9 @@
 /build
 /lib
 
+# Ant CSS
+src/antd.css
+
 # misc
 .DS_Store
 **/.env

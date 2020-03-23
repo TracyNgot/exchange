@@ -9,6 +9,10 @@ import { useOnScroll } from '../../../hooks';
 import {
   clear,
   init,
+  updatePocketFrom,
+  updatePocketFromAmount,
+  updatePocketTo,
+  updatePocketToAmount,
 } from '../../../store/exchange-session/exchange-session-actions';
 import {
   createExchange,
@@ -23,6 +27,7 @@ import {
   MockInputNumber,
   MockModal,
   MockSelect,
+  MockSpin,
 } from '../../../test/helpers';
 import {
   exchangesMock,
@@ -31,6 +36,7 @@ import {
 } from '../../../test/mocks';
 import Pockets from '../index';
 
+jest.mock('antd/lib/spin', () => MockSpin);
 jest.mock('antd/lib/carousel', () => MockCarousel);
 jest.mock('antd/lib/select', () => MockSelect);
 jest.mock('antd/lib/input-number', () => MockInputNumber);
@@ -125,13 +131,6 @@ describe('Pockets', () => {
       expect(getByTestId('mock-modal')).toBeDefined();
       expect(store.getActions()).toContainEqual(init(first, second));
       expect(store.getActions()).toContainEqual(getLatestRates('GBP'));
-
-      fireEvent.change(getByTestId('select-currency-from'), {
-        target: { value: 'EUR' },
-      });
-      fireEvent.change(getByTestId('select-currency-to'), {
-        target: { value: 'EUR' },
-      });
       fireEvent.click(getByTestId('mock-cancel'));
       expect(store.getActions()).toContainEqual(clear());
     });
@@ -150,6 +149,22 @@ describe('Pockets', () => {
       fireEvent.change(getAllByTestId('input-number')[0], {
         target: { value: 10 },
       });
+      expect(store.getActions()).toContainEqual(
+        updatePocketFromAmount(1.092, 10),
+      );
+      expect(store.getActions()).toContainEqual(
+        updatePocketToAmount(1.092, 10),
+      );
+
+      fireEvent.change(getByTestId('select-currency-from'), {
+        target: { value: 'EUR' },
+      });
+      fireEvent.change(getByTestId('select-currency-to'), {
+        target: { value: 'EUR' },
+      });
+      expect(store.getActions()).toContainEqual(updatePocketFrom(first));
+      expect(store.getActions()).toContainEqual(updatePocketTo(first));
+
       fireEvent.click(getByTestId('submit-exchange'));
 
       expect(store.getActions()).toContainEqual(
