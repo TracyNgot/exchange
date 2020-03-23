@@ -39,7 +39,6 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({ exchange, pocket }) => {
   const extra = (
     <Statistic
       className={isCredit ? 'credit' : 'debit'}
-      title={currency}
       value={isCredit ? amount * (rate as number) : amount}
       valueStyle={{
         fontSize: '4em',
