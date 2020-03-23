@@ -13,6 +13,7 @@ interface RateState {
   savedRates: Rate[];
   latestRates?: Record<string, number>;
   after?: any;
+  base?: string;
   error?: any;
 }
 
@@ -58,10 +59,13 @@ const rateSlice = createSlice({
     getLatestRatesSuccess(state, { payload }: PayloadAction<any>) {
       state.loading = false;
       state.latestRates = payload.rates;
+      state.base = payload.base;
     },
     getLatestRatesError(state, { payload }: PayloadAction<any>) {
       state.loading = false;
       state.error = payload.error;
+      state.latestRates = undefined;
+      state.base = undefined;
     },
 
     saveRate(state) {

@@ -1,17 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
 import { Alert, InputNumber, Select, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getLatestRates } from '../../../store/rates/rate-actions';
+import { ExchangePocketCardContainer } from '../styled/pockets';
+import { State } from '../../../store';
 import {
   updatePocketFrom,
   updatePocketFromAmount,
   updatePocketTo,
   updatePocketToAmount,
 } from '../../../store/exchange-session/exchange-session-actions';
-import { State } from '../../../store';
+import { getLatestRates } from '../../../store/rates/rate-actions';
 
 interface ExchangePocketCardProps {
   rate: number;
@@ -49,42 +49,43 @@ const ExchangePocketCard: React.FC<ExchangePocketCardProps> = ({
   }
 
   return (
-    <ExchangePocketCardContainer>
+    <ExchangePocketCardContainer first={isFrom}>
       {isFrom && !rate && (
         <Alert type="error" message={t('error.rateNotAvailable')} />
       )}
       {isFrom && error && <Alert type="error" message={t(`error.${error}`)} />}
-      <Select
-        value={pocket?.id}
-        onChange={updatePocket}
-        data-testid={`select-currency-${isFrom ? 'from' : 'to'}`}
-      >
-        {pockets.map(({ currency, id }) => (
-          <Select.Option key={`exchange-${id}`} value={id}>
-            {currency}
-          </Select.Option>
-        ))}
-      </Select>
-      <div className="exchange-amount">
-        <InputNumber
-          min={0}
-          step={0.01}
-          onChange={updateAmount}
-          autoFocus={isFrom}
-          value={amount}
-          precision={2}
-          disabled={!rate}
-        />
-        {isFrom && pocket && (
-          <Typography.Text>
-            {t('exchange.balance', { amount: pocket?.amount.toFixed(2) })}
-          </Typography.Text>
-        )}
+
+      <div className="exchange-pocket-container">
+        <Select
+          value={pocket?.id}
+          onChange={updatePocket}
+          data-testid={`select-currency-${isFrom ? 'from' : 'to'}`}
+        >
+          {pockets.map(({ currency, id }) => (
+            <Select.Option key={`exchange-${id}`} value={id}>
+              {currency}
+            </Select.Option>
+          ))}
+        </Select>
+        <div className="exchange-amount">
+          <InputNumber
+            min={0}
+            step={0.01}
+            onChange={updateAmount}
+            autoFocus={isFrom}
+            value={amount}
+            precision={2}
+            disabled={!rate}
+          />
+          {isFrom && pocket && (
+            <Typography.Text>
+              {t('exchange.balance', { amount: pocket?.amount.toFixed(2) })}
+            </Typography.Text>
+          )}
+        </div>
       </div>
     </ExchangePocketCardContainer>
   );
 };
-
-const ExchangePocketCardContainer = styled.div``;
 
 export default ExchangePocketCard;

@@ -1,10 +1,12 @@
 import React from 'react';
 import configureStore from 'redux-mock-store';
+import { ThemeProvider } from 'styled-components';
 import { fireEvent, render } from '@testing-library/react';
 import { cloneDeep } from 'lodash';
 import { Provider } from 'react-redux';
 import { mocked } from 'ts-jest/utils';
 
+import { theme } from '../../../utils/theme';
 import { useOnScroll } from '../../../hooks';
 import {
   clear,
@@ -79,7 +81,9 @@ describe('Pockets', () => {
     const store = configureStore()(initialState);
     const result = render(
       <Provider store={store}>
-        <Pockets />
+        <ThemeProvider theme={theme}>
+          <Pockets />
+        </ThemeProvider>
       </Provider>,
     );
 

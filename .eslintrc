@@ -5,7 +5,8 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "react-app"
   ],
   "plugins": [
     "react",
@@ -74,8 +75,7 @@
     "react/jsx-no-bind": 0,
     "react/jsx-curly-newline": 0,
     "react/no-array-index-key": 0,
-    "react/prefer-stateless-function": 0,
-    "react-hooks/exhaustive-deps": 0
+    "react/prefer-stateless-function": 0
   },
   "settings": {
     "react": {

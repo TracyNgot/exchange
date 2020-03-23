@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { Carousel, PageHeader, Tag } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import ExchangeList from './components/exchange-list';
 import ExchangeModal from './components/exchange-modal';
 import PocketCard from './components/pocket-card';
+import { PocketsContainer } from './styled/pockets';
 import { State } from '../../store';
-import { Pocket } from '../../store/pockets/pocket-reducer';
 import { getPockets } from '../../store/pockets/pocket-actions';
+import { Pocket } from '../../store/pockets/pocket-reducer';
 
 const Pockets: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Pockets: React.FC = () => {
 
   useEffect(() => {
     if (!creating) dispatch(getPockets());
-  }, [creating]);
+  }, [creating, dispatch]);
 
   useEffect(() => {
     if (pockets.length > 0) setCurrentPocket(pockets[0]);
@@ -49,7 +49,12 @@ const Pockets: React.FC = () => {
           pocket={pocketFromExchange}
         />
       )}
-      <Carousel afterChange={onChange} effect="fade" slickGoTo={0}>
+      <Carousel
+        afterChange={onChange}
+        effect="fade"
+        className="pockets-slider"
+        initialSlide={0}
+      >
         {pockets.map(pocket => (
           <PocketCard
             key={pocket.id}
@@ -62,7 +67,5 @@ const Pockets: React.FC = () => {
     </PocketsContainer>
   );
 };
-
-const PocketsContainer = styled.div``;
 
 export default Pockets;

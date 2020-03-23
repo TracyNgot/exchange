@@ -30,9 +30,13 @@ const exchangeSessionSlice = createSlice({
     },
     updatePocketTo(state, { payload }: PayloadAction<Pocket>) {
       state.to = payload;
+      state.fromAmount = 0;
+      state.toAmount = 0;
     },
     updatePocketFrom(state, { payload }: PayloadAction<Pocket>) {
       state.from = payload;
+      state.fromAmount = 0;
+      state.toAmount = 0;
     },
     updatePocketToAmount(
       state,

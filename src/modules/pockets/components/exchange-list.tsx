@@ -35,7 +35,7 @@ const ExchangeList: React.FC<ExchangeListProps> = ({ pocket }) => {
 
   useEffect(() => {
     if (pocket?.id && !creating) dispatch(getExchangesByPocket(pocket.id));
-  }, [pocket, creating]);
+  }, [pocket, creating, dispatch]);
 
   if (!loading && exchanges.length === 0)
     return <Empty description={t('empty.noExchange')} />;
