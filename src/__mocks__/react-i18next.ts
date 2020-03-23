@@ -8,4 +8,3 @@ export const useTranslation = () => ({
   t: (key: string, options?: any) =>
     `${key}${options ? Object.values(options).join(' ') : ''}`,
 });
-

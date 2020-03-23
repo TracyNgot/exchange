@@ -9,5 +9,6 @@ export default function useTimer(callback: () => void) {
     return () => {
       clearInterval(timer.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [callback]);
 }
