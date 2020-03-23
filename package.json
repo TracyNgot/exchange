@@ -81,7 +81,8 @@
       "src/i18n/index.ts",
       "src/store/create-store.ts",
       "src/setupProxy.js",
-      "src/test/"
+      "src/test/",
+      "src/store/"
     ]
   },
   "devDependencies": {
