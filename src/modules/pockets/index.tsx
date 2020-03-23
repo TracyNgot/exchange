@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Carousel, PageHeader, Tag } from 'antd';
+import dayjs from 'dayjs';
+import { Carousel, PageHeader, Select, Tag } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,7 +14,7 @@ import { Pocket } from '../../store/pockets/pocket-reducer';
 
 const Pockets: React.FC = () => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { creating, pockets } = useSelector((state: State) => ({
     creating: state.exchanges.creating,
     pockets: state.pockets.pockets,
@@ -23,6 +24,12 @@ const Pockets: React.FC = () => {
 
   function onChange(index) {
     setCurrentPocket(pockets[index]);
+  }
+
+  function changeLanguage(language) {
+    i18n.changeLanguage(language);
+    dayjs.locale(language);
+    localStorage.setItem('pocket-lang', language);
   }
 
   useEffect(() => {
@@ -42,7 +49,16 @@ const Pockets: React.FC = () => {
 
   return (
     <PocketsContainer>
-      <PageHeader title={title} />
+      <PageHeader title={title}>
+        <Select
+          defaultValue={i18n.language}
+          onChange={changeLanguage}
+          data-testid="language-selector"
+        >
+          <Select.Option value="en">EN</Select.Option>
+          <Select.Option value="fr">FR</Select.Option>
+        </Select>
+      </PageHeader>
       {pocketFromExchange && (
         <ExchangeModal
           onClose={() => setPocketFromExchange(undefined)}

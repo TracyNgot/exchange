@@ -25,10 +25,21 @@ export const PocketsContainer = styled.div`
   color: ${p => p.theme.colors.black};
 
   .ant-page-header {
+    display: flex;
+    justify-content: space-between;
     box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.15);
     z-index: 1;
     .ant-page-header-heading-title .ant-tag {
       margin-left: 5px;
+    }
+
+    .ant-page-header-content {
+      padding: 0;
+    }
+
+    .ant-select-selector {
+      background-color: inherit;
+      border: none;
     }
   }
 
@@ -45,6 +56,7 @@ export const PocketsContainer = styled.div`
   }
 
   .ant-list {
+    margin: auto;
     max-width: 800px;
     padding: 20px;
     .ant-list-item {

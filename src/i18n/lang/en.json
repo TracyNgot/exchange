@@ -1,1 +1,18 @@
-{}
+{
+  "menu": {
+    "pockets": "Pockets"
+  },
+  "pocket": {
+    "exchange": "Exchange"
+  },
+  "exchange": {
+    "balance": "Current balance: {{amount}}."
+  },
+  "error": {
+    "balanceNotSufficient": "The balance is not sufficient.",
+    "rateNotAvailable": "The rate is not available."
+  },
+  "empty": {
+    "noExchange": "No exchange."
+  }
+}

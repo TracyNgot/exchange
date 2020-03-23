@@ -1,1 +1,18 @@
-{}
+{
+  "menu": {
+    "pockets": "Porte-monnaie"
+  },
+  "pocket": {
+    "exchange": "Échanger"
+  },
+  "exchange": {
+    "balance": "Solde: {{amount}}."
+  },
+  "error": {
+    "balanceNotSufficient": "Le solde est insuffisant.",
+    "rateNotAvailable": "Le taux de change n'est pas disponible."
+  },
+  "empty": {
+    "noExchange": "Pas d'échanges."
+  }
+}

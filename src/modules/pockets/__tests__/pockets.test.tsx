@@ -127,6 +127,17 @@ describe('Pockets', () => {
     expect(container).toHaveTextContent('empty.noExchange');
   });
 
+  describe('Language selector', () => {
+    it('changes language', () => {
+      const { getByTestId } = renderPockets(state);
+
+      fireEvent.change(getByTestId('language-selector'), {
+        target: { value: 'fr' },
+      });
+      expect(localStorage.getItem('pocket-lang')).toEqual('fr');
+    });
+  });
+
   describe('Exchange modal', () => {
     it('opens exchange modal, inits exchange session, gets latest rates and clears it after closing', () => {
       const { store, getByTestId } = renderPockets(state);

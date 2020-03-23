@@ -12,7 +12,7 @@ i18n
       en: { translation: en },
       fr: { translation: fr },
     },
-    lng: 'en',
+    lng: localStorage.getItem('pocket-lang') || 'en',
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
