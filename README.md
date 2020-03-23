@@ -3,6 +3,7 @@
 - Front-End: React, Redux Toolkit, ESLint and Ant Design
 - Backend: ExpressJS
 - Database: FaunaDB
+- Rates API: https://api.exchangeratesapi.io/
 
 
 ## Live
