@@ -1,6 +1,6 @@
 import { Client } from 'faunadb';
 
-import { MockResponse } from '../../test';
+import { mockRequest, MockResponse } from '../../test';
 import Rate from '../rate';
 
 describe('Rate', () => {
@@ -19,39 +19,41 @@ describe('Rate', () => {
     it('gets rates', async () => {
       spyOnQuery.mockResolvedValue({ id: 'test-collection' });
 
-      await Rate.getRates({} as any, response);
+      await Rate.getRates(mockRequest(), response);
       expect(spyOnResponse).toBeCalledWith({ id: 'test-collection' });
       expect(spyOnStatus).toBeCalledWith(200);
     });
     it('throws error', async () => {
       spyOnQuery.mockRejectedValue({ error: 'error' });
 
-      await Rate.getRates({} as any, response);
+      await Rate.getRates(mockRequest(), response);
       expect(spyOnResponse).toBeCalledWith({ error: 'error' });
       expect(spyOnStatus).toBeCalledWith(400);
     });
   });
 
   describe('createRate', () => {
-    const body = { from: 'EUR', to: 'GBP', created: '2019-12-12' };
+    const body = { from: 'EUR', to: 'GBP' };
 
     it('add a new rate', async () => {
       spyOnQuery.mockResolvedValue({ id: 'new-currency' });
 
-      await Rate.createRate({ body } as any, response);
+      await Rate.createRate(mockRequest({ body }), response);
       expect(spyOnResponse).toBeCalledWith({ id: 'new-currency' });
       expect(spyOnStatus).toBeCalledWith(200);
     });
     it('throws error', async () => {
       spyOnQuery.mockRejectedValue({ error: 'error' });
 
-      await Rate.createRate({ body } as any, response);
+      await Rate.createRate(mockRequest({ body }), response);
       expect(spyOnResponse).toBeCalledWith({ error: 'error' });
       expect(spyOnStatus).toBeCalledWith(400);
     });
     it('throws error if missing property', async () => {
-      await Rate.createRate({ body: {} } as any, response);
-      expect(spyOnResponse).toBeCalledWith(new Error('Missing from'));
+      await Rate.createRate(mockRequest(), response);
+      expect(spyOnResponse).toBeCalledWith(
+        new Error('error.missing.property.from'),
+      );
       expect(spyOnStatus).toBeCalledWith(400);
     });
   });
@@ -60,20 +62,25 @@ describe('Rate', () => {
     it('delete existing rate', async () => {
       spyOnQuery.mockResolvedValue({ id: '12345' });
 
-      await Rate.deleteRate({ params: { id: '12345' } } as any, response);
+      await Rate.deleteRate(mockRequest({ params: { id: '12345' } }), response);
       expect(spyOnResponse).toBeCalledWith({ id: '12345' });
       expect(spyOnStatus).toBeCalledWith(200);
     });
     it('throws error', async () => {
       spyOnQuery.mockRejectedValue({ error: 'error' });
 
-      await Rate.deleteRate({ params: { id: 'not-found' } } as any, response);
+      await Rate.deleteRate(
+        mockRequest({ params: { id: 'not-found' } }),
+        response,
+      );
       expect(spyOnResponse).toBeCalledWith({ error: 'error' });
       expect(spyOnStatus).toBeCalledWith(400);
     });
     it('throws error if id not defined', async () => {
-      await Rate.deleteRate({ params: {} } as any, response);
-      expect(spyOnResponse).toBeCalledWith(new Error('Missing id'));
+      await Rate.deleteRate(mockRequest(), response);
+      expect(spyOnResponse).toBeCalledWith(
+        new Error('error.missing.property.id'),
+      );
       expect(spyOnStatus).toBeCalledWith(400);
     });
   });

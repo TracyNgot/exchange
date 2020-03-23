@@ -7,7 +7,7 @@
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
   "env": {
     "browser": true,
     "es6": true,
@@ -50,6 +50,7 @@
     "no-mixed-operators": 0,
     "no-multi-assign": 0,
     "no-nested-ternary": 0,
+    "no-param-reassign": 0,
     "no-plusplus": 0,
     "no-template-curly-in-string": 0,
     "no-undef": 0,
@@ -65,8 +66,10 @@
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
     "react/jsx-no-bind": 0,
+    "react/jsx-curly-newline": 0,
     "react/no-array-index-key": 0,
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "react-hooks/exhaustive-deps": 0
   },
   "settings": {
     "react": {

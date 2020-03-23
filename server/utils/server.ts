@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, { Express, Router } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
@@ -38,9 +38,11 @@ class Server {
   }
 
   private setupRoutes() {
+    const router = Router();
     routes.forEach(({ handler, type, path }) =>
-      this.app[type](`/.netlify/functions/${path}`, handler),
+      router[type](`${path}`, handler),
     );
+    this.app.use('/.netlify/functions/app', router);
   }
 }
 

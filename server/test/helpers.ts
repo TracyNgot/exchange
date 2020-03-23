@@ -16,3 +16,10 @@ export class MockResponse {
     return this;
   }
 }
+
+export const mockRequest: any = mock => ({
+  body: {},
+  params: {},
+  query: {},
+  ...mock,
+});

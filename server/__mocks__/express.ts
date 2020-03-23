@@ -8,4 +8,10 @@ const express = () => ({
   delete: (...args: any[]) => mockFn('delete', args),
 });
 
+export const Router = () => ({
+  get: (...args: any[]) => mockFn('get', args),
+  delete: (...args: any[]) => mockFn('delete', args),
+  post: (...args: any[]) => mockFn('post', args),
+});
+
 export default express;

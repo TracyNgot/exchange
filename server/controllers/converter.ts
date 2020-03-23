@@ -1,17 +1,16 @@
 import { Request, Response } from 'express';
 
 import database from '../utils/database';
+import { checkProperties } from '../utils/helpers';
 import { Controller } from './abstract';
 
 export default class Converter extends Controller {
-  static async getConverter(
-    request: Request,
-    response: Response,
-  ): Promise<any> {
+  static async getConverter(request: Request, response: Response) {
     try {
+      const { after, size } = request.query;
       const result = await database
         .getClient()
-        .query(Converter.queryBuilder.getCollection('converter'));
+        .query(Converter.queryBuilder.select('allCurrencies', { after, size }));
 
       response.status(200).json(result);
     } catch (error) {
@@ -19,12 +18,11 @@ export default class Converter extends Controller {
     }
   }
 
-  static async addCurrency(request: Request, response: Response): Promise<any> {
+  static async addCurrency(request: Request, response: Response) {
     try {
+      checkProperties(['currency'], request.body);
+
       const { currency } = request.body;
-
-      if (!currency) throw new Error('Missing currency');
-
       const result = await database
         .getClient()
         .query(Converter.queryBuilder.create('converter', { currency }));
@@ -35,18 +33,14 @@ export default class Converter extends Controller {
     }
   }
 
-  static async deleteCurrency(
-    request: Request,
-    response: Response,
-  ): Promise<any> {
+  static async deleteCurrency(request: Request, response: Response) {
     try {
+      checkProperties(['id'], request.params);
+
       const { id } = request.params;
-
-      if (!id) throw new Error('Missing id');
-
       const result = await database
         .getClient()
-        .query(Converter.queryBuilder.delete(id));
+        .query(Converter.queryBuilder.delete('converter', id));
 
       response.status(200).json(result);
     } catch (error) {

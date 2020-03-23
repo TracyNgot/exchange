@@ -1,5 +1,5 @@
 import { Client } from 'faunadb';
-import { MockResponse } from '../../test';
+import { MockResponse, mockRequest } from '../../test';
 import Converter from '../converter';
 
 describe('Converter', () => {
@@ -18,14 +18,14 @@ describe('Converter', () => {
     it('gets the converter', async () => {
       spyOnQuery.mockResolvedValue({ id: 'test-collection' });
 
-      await Converter.getConverter({} as any, response);
+      await Converter.getConverter(mockRequest(), response);
       expect(spyOnResponse).toBeCalledWith({ id: 'test-collection' });
       expect(spyOnStatus).toBeCalledWith(200);
     });
     it('throws error', async () => {
       spyOnQuery.mockRejectedValue({ error: 'error' });
 
-      await Converter.getConverter({} as any, response);
+      await Converter.getConverter(mockRequest(), response);
       expect(spyOnResponse).toBeCalledWith({ error: 'error' });
       expect(spyOnStatus).toBeCalledWith(400);
     });
@@ -36,7 +36,7 @@ describe('Converter', () => {
       spyOnQuery.mockResolvedValue({ id: 'new-currency' });
 
       await Converter.addCurrency(
-        { body: { currency: 'GBP' } } as any,
+        mockRequest({ body: { currency: 'GBP' } }),
         response,
       );
       expect(spyOnResponse).toBeCalledWith({ id: 'new-currency' });
@@ -46,15 +46,17 @@ describe('Converter', () => {
       spyOnQuery.mockRejectedValue({ error: 'error' });
 
       await Converter.addCurrency(
-        { body: { currency: 'GBP' } } as any,
+        mockRequest({ body: { currency: 'GBP' } }),
         response,
       );
       expect(spyOnResponse).toBeCalledWith({ error: 'error' });
       expect(spyOnStatus).toBeCalledWith(400);
     });
     it('throws error if currency not defined', async () => {
-      await Converter.addCurrency({ body: {} } as any, response);
-      expect(spyOnResponse).toBeCalledWith(new Error('Missing currency'));
+      await Converter.addCurrency(mockRequest(), response);
+      expect(spyOnResponse).toBeCalledWith(
+        new Error('error.missing.property.currency'),
+      );
       expect(spyOnStatus).toBeCalledWith(400);
     });
   });
@@ -64,7 +66,7 @@ describe('Converter', () => {
       spyOnQuery.mockResolvedValue({ id: '12345' });
 
       await Converter.deleteCurrency(
-        { params: { id: '12345' } } as any,
+        mockRequest({ params: { id: '12345' } }),
         response,
       );
       expect(spyOnResponse).toBeCalledWith({ id: '12345' });
@@ -74,15 +76,17 @@ describe('Converter', () => {
       spyOnQuery.mockRejectedValue({ error: 'error' });
 
       await Converter.deleteCurrency(
-        { params: { id: 'not-found' } } as any,
+        mockRequest({ params: { id: 'not-found' } }),
         response,
       );
       expect(spyOnResponse).toBeCalledWith({ error: 'error' });
       expect(spyOnStatus).toBeCalledWith(400);
     });
     it('throws error if id not defined', async () => {
-      await Converter.deleteCurrency({ params: {} } as any, response);
-      expect(spyOnResponse).toBeCalledWith(new Error('Missing id'));
+      await Converter.deleteCurrency(mockRequest(), response);
+      expect(spyOnResponse).toBeCalledWith(
+        new Error('error.missing.property.id'),
+      );
       expect(spyOnStatus).toBeCalledWith(400);
     });
   });
