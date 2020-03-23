@@ -1,23 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Spin, Layout } from 'antd';
+import { useSelector } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+
+import Routes from './routes';
+import { State } from './store';
+import { theme } from './utils/theme';
+
+const GlobalStyle = createGlobalStyle`
+  * {
+  font-family: 'Baloo 2', cursive;
+  }
+`;
 
 function App() {
+  const loading = useSelector((state: State) => state.pockets.loading);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Edit src/App.tsx and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Spin spinning={loading} delay={500}>
+            <Routes />
+          </Spin>
+        </Layout>
+      </ThemeProvider>
+    </Router>
   );
 }
 
