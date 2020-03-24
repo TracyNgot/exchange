@@ -4,20 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEqual } from 'lodash';
 
-import ExchangePocketCard from './exchange-pocket-card';
-import { ExchangeModalContainer } from '../styled/pockets';
-import { useTimer } from '../../../hooks';
-import { State } from '../../../store';
+import ExchangePocketCard from '../components/exchange-pocket-card';
+import { ExchangeModalContainer } from '../modules/pockets/styled/pockets';
+import { useTimer } from '../hooks';
+import { State } from '../store';
 import {
   clear,
   init,
-} from '../../../store/exchange-session/exchange-session-actions';
-import { createExchange } from '../../../store/exchanges/exchange-actions';
-import { Pocket } from '../../../store/pockets/pocket-reducer';
-import { getLatestRates } from '../../../store/rates/rate-actions';
+} from '../store/exchange-session/exchange-session-actions';
+import { createExchange } from '../store/exchanges/exchange-actions';
+import { Pocket } from '../store/pockets/pocket-reducer';
+import { getLatestRates } from '../store/rates/rate-actions';
 
 interface ExchangeModalProps {
-  onClose: () => void;
+  onClose?: () => void;
   pocket: Pocket;
 }
 
@@ -108,6 +108,7 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({ onClose, pocket }) => {
       footer={footer}
       centered
       visible
+      closable={!onClose}
     >
       <Spin spinning={!bootstrapped || !rate} delay={500}>
         {rate && (

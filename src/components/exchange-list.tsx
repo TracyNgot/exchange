@@ -3,12 +3,12 @@ import { List, Empty } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import ExchangeCard from './exchange-card';
-import { useOnScroll } from '../../../hooks';
-import { expandPockets } from '../../../utils/helpers';
-import { getExchangesByPocket } from '../../../store/exchanges/exchange-actions';
-import { Pocket } from '../../../store/pockets/pocket-reducer';
-import { State } from '../../../store';
+import ExchangeCard from '../components/exchange-card';
+import { useOnScroll } from '../hooks';
+import { expandPockets } from '../utils/helpers';
+import { getExchangesByPocket } from '../store/exchanges/exchange-actions';
+import { Pocket } from '../store/pockets/pocket-reducer';
+import { State } from '../store';
 
 interface ExchangeListProps {
   pocket: Pocket;

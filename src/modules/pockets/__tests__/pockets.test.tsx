@@ -31,11 +31,7 @@ import {
   MockSelect,
   MockSpin,
 } from '../../../test/helpers';
-import {
-  exchangesMock,
-  pocketsMock,
-  latestRatesResponse,
-} from '../../../test/mocks';
+import { latestRatesResponse, state, first, second } from '../../../test/mocks';
 import Pockets from '../index';
 
 jest.mock('antd/lib/spin', () => MockSpin);
@@ -67,16 +63,6 @@ jest.mock('../../../store/exchange-session/exchange-session-actions', () => ({
 }));
 
 describe('Pockets', () => {
-  const state: any = makeInitialState();
-  state.pockets.pockets = pocketsMock;
-  state.exchanges.exchanges = exchangesMock;
-  const [first, second] = pocketsMock;
-  state.exchangesSession.from = first;
-  state.exchangesSession.fromAmount = 10;
-  state.exchangesSession.to = second;
-  state.exchangesSession.isReady = true;
-  state.exchanges.after = { id: 'after' };
-
   function renderPockets(initialState = makeInitialState()) {
     const store = configureStore()(initialState);
     const result = render(

@@ -3,15 +3,15 @@ import { Alert, InputNumber, Select, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ExchangePocketCardContainer } from '../styled/pockets';
-import { State } from '../../../store';
+import { ExchangePocketCardContainer } from '../modules/pockets/styled/pockets';
+import { State } from '../store';
 import {
   updatePocketFrom,
   updatePocketFromAmount,
   updatePocketTo,
   updatePocketToAmount,
-} from '../../../store/exchange-session/exchange-session-actions';
-import { getLatestRates } from '../../../store/rates/rate-actions';
+} from '../store/exchange-session/exchange-session-actions';
+import { getLatestRates } from '../store/rates/rate-actions';
 
 interface ExchangePocketCardProps {
   rate: number;

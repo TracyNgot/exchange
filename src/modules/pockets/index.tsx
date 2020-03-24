@@ -4,8 +4,8 @@ import { Carousel, PageHeader, Select, Tag } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ExchangeList from './components/exchange-list';
-import ExchangeModal from './components/exchange-modal';
+import ExchangeList from '../../components/exchange-list';
+import ExchangeModal from '../../components/exchange-modal';
 import PocketCard from './components/pocket-card';
 import { PocketsContainer } from './styled/pockets';
 import { State } from '../../store';

@@ -8,10 +8,10 @@ import {
   SyncOutlined,
 } from '@ant-design/icons';
 
-import { toFormattedDate } from '../../../utils/helpers';
-import { Exchange } from '../../../store/exchanges/exchange-reducer';
-import { Pocket } from '../../../store/pockets/pocket-reducer';
-import { currencies } from '../../../utils/currencies';
+import { toFormattedDate } from '../utils/helpers';
+import { Exchange } from '../store/exchanges/exchange-reducer';
+import { Pocket } from '../store/pockets/pocket-reducer';
+import { currencies } from '../utils/currencies';
 
 interface ExchangeCardProps {
   exchange: Exchange;
