@@ -10,6 +10,9 @@
 Running on Netlify using Netlify-Lambda
 > Live app: https://exchange.yolaine.dev/
 
+> Widget view: https://exchange.yolaine.dev/widget
+
+
 ## Github Actions
 It builds, lints and checks coverage
 
