@@ -33,14 +33,14 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({ onClose, pocket }) => {
     error,
     pocketFromExchange,
     pocketToExchange,
-    pocketFromAmmountExchange,
+    pocketFromAmountExchange,
     isReady,
     creating,
   } = useSelector((state: State) => ({
     bootstrapped: state.exchangesSession.bootstrapped,
     pockets: state.pockets.pockets,
     pocketFromExchange: state.exchangesSession.from,
-    pocketFromAmmountExchange: state.exchangesSession.fromAmount,
+    pocketFromAmountExchange: state.exchangesSession.fromAmount,
     pocketToExchange: state.exchangesSession.to,
     isReady: state.exchangesSession.isReady,
     latestRates: state.rates.latestRates,
@@ -54,7 +54,7 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({ onClose, pocket }) => {
   function handleExchange() {
     dispatch(
       createExchange({
-        amount: pocketFromAmmountExchange,
+        amount: pocketFromAmountExchange,
         from: pocketFromExchange?.id,
         to: pocketToExchange?.id,
         rate,
@@ -93,7 +93,12 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({ onClose, pocket }) => {
       size="large"
       loading={creating}
       disabled={
-        !isReady || !rate || isEqual(pocketToExchange, pocketFromExchange)
+        !isReady ||
+        !rate ||
+        !pocketToExchange ||
+        !pocketFromExchange ||
+        !pocketFromAmountExchange ||
+        isEqual(pocketToExchange, pocketFromExchange)
       }
       onClick={handleExchange}
     >
