@@ -33,8 +33,9 @@ yarn lint
 ```
 
 ## Setup Server
+Using FaunaDB
 ```
-export MONEY_DB_KEY=YOUR_API_KEY
+export MONEY_DB_KEY=YOUR_FAUNA_DB_API_KEY
 yarn install
 yarn start.server
 ```
