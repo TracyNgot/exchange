@@ -79,7 +79,7 @@ const ExchangePocketCard: React.FC<ExchangePocketCardProps> = ({
             precision={2}
             disabled={!rate}
           />
-          {isFrom && pocket && (
+          {pocket && (
             <Typography.Text>
               {t('exchange.balance', { amount: pocket?.amount.toFixed(2) })}
             </Typography.Text>
